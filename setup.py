@@ -22,7 +22,7 @@ with open("README.md", 'r') as fh:
 
 setup(
     name='generala',
-    version='1.0.0',
+    version='1.0.1-dev',
     author="Gabriel Gerlero",
     description="Maximize your score in a turn of the Generala dice game",
     long_description=long_description,
