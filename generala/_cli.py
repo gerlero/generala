@@ -101,7 +101,7 @@ def main():
             header = False
             for category,(expected,hold) in zip(x, results):
                 if not header:
-                    print("{:^15}{:^15}{}".format("Category", "Expected score", "Dice to hold"))
+                    print("{:^15}{:^15}{}".format("Category", "Expected score", "Hold dice"))
                     header = True
                 print("{:^15}     {:>5.2f}     {}".format(str(category)[:15], expected, dice_to_hold_to_str(hold, c)))
 

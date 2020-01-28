@@ -42,7 +42,7 @@ The program responds with the best expected scores for each category. The third 
 
 ```
 Computing. This may take a few seconds....
-   Category    Expected score Dice to hold
+   Category    Expected score Hold dice
       1s             2.22     1
       2s             4.44     2
       3s             4.58     none
@@ -66,7 +66,7 @@ $ generala 2 44543
 The tool outputs:
 
 ```
-   Category    Expected score Dice to hold
+   Category    Expected score Hold dice
       1s             0.83     none
       2s             1.67     none
       3s             5.00     3
@@ -114,7 +114,7 @@ $ generala -46fpg 1 44126
 we tell the tool that the categories 4s, 6s, Full house, Four of a kind, and Generala are closed—which results in those categories not being considered in the computation:
 
 ```
-   Category    Expected score Dice to hold
+   Category    Expected score Hold dice
       1s             2.22     1
       2s             4.44     2
       3s             4.58     none
