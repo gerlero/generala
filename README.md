@@ -2,13 +2,13 @@
 
 **generala** is a probabilistic tool for the [dice game of Generala](https://en.wikipedia.org/wiki/Generala).
 
-**generala** helps you decide which dice to hold after each roll. Starting from the dice you have, the tool considers all possible future rolls to find which combinations of held dice give the best expected scores for the different categories. It uses every CPU core available to lower the computation times to just a few seconds.
+**generala** helps you decide which dice to hold after each roll. Starting from the dice you have, the tool considers all possible future rolls to find which combinations of held dice give the best expected scores for the different categories. While written in pure Python—which is not at all efficient for these kinds of tasks—, it uses multiprocessing to lower the computation times to just a few seconds per invocation at the most.
 
 The categories and scores in the tool correspond to the variant of the game played in my family. As there are many variants of the game—each of which assigns scores to the categories differently—you may want to check out the ```generala.categories``` module and modify it as desired.
 
 ## Installation
 
-**generala** is available as a [Python package on PyPI](https://pypi.org/projects/generala). Assuming you have Python 3.5 or later, install it by running the command:
+**generala** is available as a [Python package on PyPI](https://pypi.org/project/generala). Assuming you have Python 3.5 or later, install it by running the command:
 
 ```bash
 $ pip3 install generala
@@ -20,7 +20,7 @@ or:
 $ python3 -m pip install generala
 ```
 
-Optionally, a ```--user``` option can be added to the previous commands to install the tool for the current user only (to avoid the need for system administrator privileges).
+Optionally, Fronts can be installed in a [virtual environment](python virtual environment), or the ```--user```  option can be added to the previous commands to install the packages for the current user only (to avoid the neeed for system administrator privileges).
 
 ## Usage
 
@@ -130,7 +130,7 @@ For a list of all available options, run:
 $ generala --help
 ```
 
-### As a Python package
+### As a Python library
 
 It is also possible to call into the functionality from a Python program. Here's an example.
 
