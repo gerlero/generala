@@ -1,10 +1,9 @@
-from itertools import product, chain, repeat
-from collections import Counter
-from operator import add
-
 import abc
-import math
 import functools
+import math
+from collections import Counter
+from itertools import chain, product, repeat
+from operator import add
 
 __version__ = "1.0.1"
 
@@ -41,20 +40,19 @@ def possible_held(counts):
 
 
 @functools.lru_cache(maxsize=6)
-def possible_new(num_new):  
+def possible_new(num_new):
 
     return Counter(tuple(counts(dice)) for dice in product((1,2,3,4,5,6), repeat=num_new))
 
 
-def expected_score(category, counts, roll, open_categories, return_held=False):
+def expected_score(category, counts, roll, open_categories, *, return_held=False):
 
     if roll == 3:
         score = category.score(counts, roll, open_categories)
 
         if return_held:
             return score, []
-        else: 
-            return score
+        return score
 
     max_expected = -math.inf
 
@@ -92,5 +90,4 @@ def expected_score(category, counts, roll, open_categories, return_held=False):
     if return_held:
         return max_expected, best_held
 
-    else:
-        return max_expected
+    return max_expected

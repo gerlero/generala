@@ -1,7 +1,7 @@
-import abc
 import math
 
 from generala import Category
+
 
 class Number(Category):
 
@@ -12,7 +12,7 @@ class Number(Category):
         return self._n * counts[self._n-1]
 
     def __str__(self):
-        return "{}s".format(self._n)
+        return f"{self._n}s"
 
 
 class MajorHand(Category):
@@ -25,7 +25,7 @@ class MajorHand(Category):
 class Straight(MajorHand):
 
     def score(self, counts, roll, open_categories):
-        if counts == (0,1,1,1,1,1) or counts == (1,1,1,1,1,0):
+        if counts[1:-1] == (1,1,1,1):
             if roll == 1:
                 return self._score + self._first_roll_bonus
             return self._score
