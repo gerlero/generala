@@ -11,7 +11,7 @@ The categories and scores in the tool correspond to the variant of the game play
 **generala** is available as a [Python package on PyPI](https://pypi.org/project/generala). Assuming you have Python 3.5 or later, install it by running the command:
 
 ```bash
-$ pip3 install generala
+$ pip install generala
 ```
 
 or:
@@ -19,8 +19,6 @@ or:
 ```bash
 $ python3 -m pip install generala
 ```
-
-Optionally, Fronts can be installed in a [virtual environment](python virtual environment), or the ```--user```  option can be added to the previous commands to install the packages for the current user only (to avoid the neeed for system administrator privileges).
 
 ## Usage
 
