@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=61.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "generala"
+description = "Maximize your score in a turn of the Generala dice game"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{name = "Gabriel Gerlero"}]
+classifiers = [
+    'Development Status :: 5 - Production/Stable',
+    'Intended Audience :: Developers',
+    'Intended Audience :: Education',
+    'Intended Audience :: End Users/Desktop',
+    'License :: OSI Approved :: MIT License',
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+    'Programming Language :: Python :: 3.12',
+    'Programming Language :: Python :: 3.13',
+    'Topic :: Games/Entertainment',
+    'Topic :: Software Development :: Libraries',
+    'Operating System :: OS Independent'
+]
+
+dynamic = ["version"]
+
+[project.urls]
+Homepage = "https://github.com/gerlero/generala"
+Repository = "https://github.com/gerlero/generala"
+
+[project.scripts]
+generala = "generala.__main__:main"
+
+[tool.setuptools.dynamic]
+version = {attr = "generala.__version__"}

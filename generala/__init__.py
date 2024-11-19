@@ -6,6 +6,8 @@ import abc
 import math
 import functools
 
+__version__ = "1.0.1"
+
 
 def counts(dice):
 
