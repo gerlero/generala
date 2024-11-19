@@ -1,5 +1,8 @@
 # generala
 
+[![CI](https://github.com/gerlero/generala/actions/workflows/ci.yml/badge.svg)](https://github.com/gerlero/generala/actions/workflows/ci.yml)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+
 **generala** is a probabilistic tool for the [dice game of Generala](https://en.wikipedia.org/wiki/Generala).
 
 **generala** helps you decide which dice to hold after each roll. Starting from the dice you have, the tool considers all possible future rolls to find which combinations of held dice give the best expected scores for the different categories. While written in pure Python—which is not at all efficient for these kinds of tasks—, it uses multiprocessing to lower the computation times to just a few seconds per invocation at the most.

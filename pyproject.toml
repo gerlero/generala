@@ -28,6 +28,9 @@ classifiers = [
 
 dynamic = ["version"]
 
+[project.optional-dependencies]
+lint = ["ruff"]
+
 [project.urls]
 Homepage = "https://github.com/gerlero/generala"
 Repository = "https://github.com/gerlero/generala"
@@ -37,3 +40,18 @@ generala = "generala.__main__:main"
 
 [tool.setuptools.dynamic]
 version = {attr = "generala.__version__"}
+
+[tool.ruff.lint]
+extend-select = ["ALL"]
+extend-ignore = [
+    "ANN",
+    "ARG001",
+    "ARG002",
+    "C901",
+    "COM812",
+    "D",
+    "E501",
+    "ISC001",
+    "PLR2004",
+    "T201",
+]
