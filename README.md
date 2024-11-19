@@ -8,7 +8,7 @@ The categories and scores in the tool correspond to the variant of the game play
 
 ## Installation
 
-**generala** is available as a [Python package on PyPI](https://pypi.org/project/generala). Assuming you have Python 3.5 or later, install it by running the command:
+**generala** is available as a [Python package on PyPI](https://pypi.org/project/generala). Assuming you have Python 3.9 or later, install it by running the command:
 
 ```bash
 $ pip install generala
