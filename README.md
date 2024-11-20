@@ -2,6 +2,10 @@
 
 [![CI](https://github.com/gerlero/generala/actions/workflows/ci.yml/badge.svg)](https://github.com/gerlero/generala/actions/workflows/ci.yml)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
+[![Publish](https://github.com/gerlero/generala/actions/workflows/pypi-publish.yml/badge.svg)](https://github.com/gerlero/generala/actions/workflows/pypi-publish.yml)
+[![PyPI](https://img.shields.io/pypi/v/generala)](https://pypi.org/project/generala/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/generala)](https://pypi.org/project/generala/)
 
 **generala** is a probabilistic tool for the [dice game of Generala](https://en.wikipedia.org/wiki/Generala).
 
