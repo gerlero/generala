@@ -9,7 +9,7 @@
 
 **generala** is a probabilistic tool for the [dice game of Generala](https://en.wikipedia.org/wiki/Generala).
 
-**generala** helps you decide which dice to hold after each roll. Starting from the dice you have, the tool considers all possible future rolls to find which combinations of held dice give the best expected scores for the different categories. While written in pure Python—which is not at all efficient for these kinds of tasks—, it uses multiprocessing to lower the computation times to just a few seconds per invocation at the most.
+**generala** helps you decide which dice to hold after each roll. Starting from the dice you have, the tool considers all possible future rolls to find which combinations of held dice give the best expected scores for the different categories.
 
 The categories and scores in the tool correspond to the variant of the game played in my family. As there are many variants of the game—each of which assigns scores to the categories differently—you may want to check out the ```generala.categories``` module and modify it as desired.
 

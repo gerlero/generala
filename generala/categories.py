@@ -1,6 +1,8 @@
 import abc
 import math
 
+import numpy as np
+
 from generala import Category
 
 
@@ -9,7 +11,8 @@ class Number(Category):
         self._n = n
 
     def score(self, counts, roll, open_categories):
-        return self._n * counts[self._n - 1]
+        counts = np.asarray(counts)
+        return self._n * counts[..., self._n - 1]
 
     def __str__(self):
         return f"{self._n}s"
@@ -21,11 +24,11 @@ class MajorHand(Category):
         self._first_roll_bonus = first_roll_bonus
 
     def score(self, counts, roll, open_categories):
-        if self._is_valid(counts, open_categories):
-            if roll == 1:
-                return self._score + self._first_roll_bonus
-            return self._score
-        return 0
+        score = self._score
+        if roll == 1:
+            score += self._first_roll_bonus
+
+        return np.where(self._is_valid(counts, open_categories), score, 0)
 
     @abc.abstractmethod
     def _is_valid(self, counts, open_categories):
@@ -34,7 +37,8 @@ class MajorHand(Category):
 
 class Straight(MajorHand):
     def _is_valid(self, counts, open_categories):
-        return counts[1:-1] == (1, 1, 1, 1)
+        counts = np.asarray(counts)
+        return (counts[..., 1:-1] == 1).all(axis=-1)
 
     def __str__(self):
         return "Straight"
@@ -42,7 +46,8 @@ class Straight(MajorHand):
 
 class FullHouse(MajorHand):
     def _is_valid(self, counts, open_categories):
-        return 3 in counts and 2 in counts
+        counts = np.asarray(counts)
+        return (counts == 2).any(axis=-1) & (counts == 3).any(axis=-1)
 
     def __str__(self):
         return "Full house"
@@ -50,7 +55,8 @@ class FullHouse(MajorHand):
 
 class FourOfAKind(MajorHand):
     def _is_valid(self, counts, open_categories):
-        return 4 in counts
+        counts = np.asarray(counts)
+        return (counts == 4).any(axis=-1)
 
     def __str__(self):
         return "Four of a kind"
@@ -58,7 +64,8 @@ class FourOfAKind(MajorHand):
 
 class Generala(MajorHand):
     def _is_valid(self, counts, open_categories):
-        return 5 in counts
+        counts = np.asarray(counts)
+        return (counts == 5).any(axis=-1)
 
     def __str__(self):
         return "Generala"
@@ -70,7 +77,8 @@ class DoubleGenerala(MajorHand):
         self._generala = generala
 
     def _is_valid(self, counts, open_categories):
-        return 5 in counts and self._generala not in open_categories
+        counts = np.asarray(counts)
+        return ((self._generala in open_categories) & counts == 5).any(axis=-1)
 
     def __str__(self):
         return "Double Generala"
@@ -103,7 +111,10 @@ class MaxScore(Category):
         self._categories = categories
 
     def score(self, counts, roll, open_categories):
-        return max(cat.score(counts, roll, open_categories) for cat in self._categories)
+        return np.max(
+            [cat.score(counts, roll, open_categories) for cat in self._categories],
+            axis=0,
+        )
 
     def __str__(self):
         return "any"

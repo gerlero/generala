@@ -1,9 +1,10 @@
 import abc
 import functools
-import math
 from collections import Counter
 from itertools import chain, product, repeat
 from operator import add
+
+import numpy as np
 
 __version__ = "1.1.0"
 
@@ -38,7 +39,7 @@ class Category(abc.ABC):
                 return score, []
             return score
 
-        max_expected = -math.inf
+        max_expected = -np.inf
 
         if return_held:
             best_held = []
@@ -48,6 +49,14 @@ class Category(abc.ABC):
 
             if num_held == 5:
                 expected = self.score(counts, roll, open_categories)
+
+            elif roll == 2:
+                new = np.array(list(possible_new(5 - num_held).keys()))
+                weights = np.array(list(possible_new(5 - num_held).values()))
+
+                expected = np.dot(
+                    weights, self.expected_score(held + new, 3, open_categories)
+                ) / np.sum(weights)
 
             else:
                 cum_weighted_expected = 0
@@ -63,7 +72,7 @@ class Category(abc.ABC):
 
                 expected = cum_weighted_expected / cum_weight
 
-            if return_held and math.isclose(expected, max_expected):
+            if return_held and np.isclose(expected, max_expected):
                 best_held.append(held)
 
             elif expected > max_expected:
