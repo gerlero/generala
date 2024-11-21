@@ -4,7 +4,7 @@ import multiprocessing
 import signal
 import sys
 
-from . import categories, counts, dice, expected_score, possible_held
+from . import Category, categories, counts, dice, possible_held
 
 
 def counts_from_str(dice_str):
@@ -46,87 +46,52 @@ def main():
     )
     parser.add_argument("roll", type=int, choices=range(1, 4), help="roll number")
     parser.add_argument("dice", type=str, help="e.g. 44126")
-    parser.add_argument(
-        "-1",
-        "--no-1s",
-        action="store_const",
-        const=categories.ones,
-        help="category 1s closed",
-    )
-    parser.add_argument(
-        "-2",
-        "--no-2s",
-        action="store_const",
-        const=categories.twos,
-        help="category 2s closed",
-    )
-    parser.add_argument(
-        "-3",
-        "--no-3s",
-        action="store_const",
-        const=categories.threes,
-        help="category 3s closed",
-    )
-    parser.add_argument(
-        "-4",
-        "--no-4s",
-        action="store_const",
-        const=categories.fours,
-        help="category 4s closed",
-    )
-    parser.add_argument(
-        "-5",
-        "--no-5s",
-        action="store_const",
-        const=categories.fives,
-        help="category 5s closed",
-    )
-    parser.add_argument(
-        "-6",
-        "--no-6s",
-        action="store_const",
-        const=categories.sixes,
-        help="category 6s closed",
-    )
+    for category in categories.NUMBERS:
+        parser.add_argument(
+            f"--no-{category}",
+            action="store_const",
+            const=category,
+            help=f"category {category} closed",
+        )
     parser.add_argument(
         "-s",
         "--no-straight",
         action="store_const",
-        const=categories.straight,
+        const=categories.STRAIGHT,
         help="category Straight closed",
     )
     parser.add_argument(
         "-f",
         "--no-full-house",
         action="store_const",
-        const=categories.full_house,
+        const=categories.FULL_HOUSE,
         help="category Full house closed",
     )
     parser.add_argument(
         "-p",
         "--no-four-of-a-kind",
         action="store_const",
-        const=categories.four_of_a_kind,
+        const=categories.FOUR_OF_A_KIND,
         help="category Four of a kind closed",
     )
     parser.add_argument(
         "-g",
         "--no-generala",
         action="store_const",
-        const=categories.generala,
+        const=categories.GENERALA,
         help="category Generala closed",
     )
     parser.add_argument(
         "-d",
         "--no-double-generala",
         action="store_const",
-        const=categories.double_generala,
+        const=categories.DOUBLE_GENERALA,
         help="category Double Generala closed",
     )
 
     args = parser.parse_args()
 
-    open_categories = list(categories.all_categories)
+    open_categories = list(categories.ALL)
 
     closed_categories = [
         args.no_1s,
@@ -150,14 +115,14 @@ def main():
 
     with multiprocessing.Pool(multiprocessing.cpu_count()) as p:
         f = functools.partial(
-            expected_score,
+            Category.expected_score,
             counts=c,
             roll=args.roll,
             open_categories=open_categories,
             return_held=True,
         )
 
-        x = [*open_categories, categories.MaxScore(open_categories)]
+        x = [*open_categories, categories.MAX_SCORE]
 
         if args.roll == 1:
             print("Computing. This may take a few seconds....")

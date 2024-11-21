@@ -140,14 +140,14 @@ $ generala --help
 It is also possible to call into the functionality from a Python program. Here's an example.
 
 ```python
-from generala import expected_score, counts, dice
-from generala.categories import straight, all_categories
+from generala import counts, dice
+from generala.categories import STRAIGHT, ALL
 
 c = counts((4,4,1,2,6))
 
-score, held = expected_score(category=straight, counts=c, roll=1, open_categories=all_categories, return_held=True)
+score, held = STRAIGHT.expected_score(counts=c, roll=1, open_categories=ALL, return_held=True)
 
-print("Hold dice {}. Expected score: {:.2f}".format(dice(held[0]), score))
+print(f"Hold dice {dice(held[0])}. Expected score: {score:.2f}")
 
 ```
 
