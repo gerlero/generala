@@ -5,7 +5,7 @@ from collections import Counter
 from itertools import chain, product, repeat
 from operator import add
 
-__version__ = "1.0.1"
+__version__ = "1.1.0"
 
 
 def counts(dice):
