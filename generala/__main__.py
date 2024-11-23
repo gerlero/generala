@@ -122,7 +122,7 @@ def main():
             return_held=True,
         )
 
-        x = [*open_categories, categories.MAX_SCORE]
+        x = [*open_categories, categories.MaxScore(open_categories)]
 
         if args.roll == 1:
             print("Computing. This may take a few seconds....")
