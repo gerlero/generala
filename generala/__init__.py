@@ -6,7 +6,7 @@ from operator import add
 
 import numpy as np
 
-__version__ = "1.1.0"
+__version__ = "2.0.0"
 
 
 def counts(dice):
