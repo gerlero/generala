@@ -113,7 +113,7 @@ def main():
 
     c = counts_from_str(args.dice)
 
-    with multiprocessing.Pool(multiprocessing.cpu_count()) as p:
+    with multiprocessing.Pool() as p:
         f = functools.partial(
             Category.expected_score,
             counts=c,
